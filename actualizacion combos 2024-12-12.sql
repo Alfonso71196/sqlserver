@@ -192,9 +192,9 @@ IF @zona='D'
 
     UPDATE combosEspecial
     SET descuento = CASE 
-        WHEN articulo = '0702' AND IdCombo = '89' THEN 31.8181818
-        WHEN articulo = '1001' AND IdCombo = '89' THEN 9.09090909
-        WHEN articulo = '1002' AND IdCombo = '89' THEN 9.09090909
+        WHEN articulo = '0702' AND IdCombo = '89' THEN 29.54545455
+        WHEN articulo = '1001' AND IdCombo = '89' THEN 6.060606061
+        WHEN articulo = '1002' AND IdCombo = '89' THEN 6.060606061
         ELSE descuento
     END
     WHERE IdCombo = '89' AND articulo IN ('0702', '1001', '1002');
@@ -207,7 +207,7 @@ IF @zona='D'
     UPDATE combosdet
     SET descuento = CASE 
         WHEN familia = 'PASTES' AND IdCombo = '88' THEN 0
-        WHEN familia = 'PAQUETE01' AND IdCombo = '88' THEN 5.88235294
+        WHEN familia = 'PAQUETE01' AND IdCombo = '88' THEN 5.714285714
         ELSE descuento
     END
     WHERE IdCombo = '88' AND familia IN ('PASTES','PAQUETE01');
@@ -249,9 +249,9 @@ IF @zona='E'
 
     UPDATE combosEspecial
     SET descuento = CASE 
-        WHEN articulo = '0702' AND IdCombo = '89' THEN 31.8181818
-        WHEN articulo = '1001' AND IdCombo = '89' THEN 9.09090909
-        WHEN articulo = '1002' AND IdCombo = '89' THEN 9.09090909
+        WHEN articulo = '0702' AND IdCombo = '89' THEN 22.2727273
+        WHEN articulo = '1001' AND IdCombo = '89' THEN 3.03030303
+        WHEN articulo = '1002' AND IdCombo = '89' THEN 3.03030303
         ELSE descuento
     END
     WHERE IdCombo = '89' AND articulo IN ('0702', '1001', '1002');
@@ -264,7 +264,7 @@ IF @zona='E'
     UPDATE combosdet
     SET descuento = CASE 
         WHEN familia = 'PASTES' AND IdCombo = '88' THEN 0
-        WHEN familia = 'PAQUETE01' AND IdCombo = '88' THEN 5.88235294
+        WHEN familia = 'PAQUETE01' AND IdCombo = '88' THEN 0
         ELSE descuento
     END
     WHERE IdCombo = '88' AND familia IN ('PASTES','PAQUETE01');
@@ -288,16 +288,16 @@ IF @zona='E'
 
     UPDATE combosdet
     SET descuento = CASE 
-        WHEN familia = 'PASTES' AND IdCombo = '46' THEN 22.8571429
+        WHEN familia = 'PASTES' AND IdCombo = '46' THEN 14.28571429
         WHEN familia = 'CAJA' AND IdCombo = '46' THEN 100
         ELSE descuento
     END
     WHERE IdCombo = '46' AND familia IN ('PASTES','CAJA');
 END
-IF @zona='F'
+/*IF @zona='F'
     BEGIN
-    ---------- ZONA F (OK) 
-END
+    ---------- ZONA F (OK)  SE MANTIENEN LOS COMBOS ZONA F
+END*/
 
 IF @zona='AIFA'
     BEGIN
@@ -359,14 +359,10 @@ IF @zona='AIFA'
 
       END
 
-      IF @zona='TULUM'
+IF @zona='TULUM'
           BEGIN
           ---------- ZONA TULUM (OK) 
-      END
 
-IF @zona='CONDESA'
-          BEGIN
-    ---------- ZONA TULUM (OK)
     -- paqueteko 1 (2 PASTES = AMERICANO/ AGUA)
     --SELECT * FROM combos WHERE IdCombo='89'
     --SELECT * FROM combosEspecial WHERE IdCombo='89'
@@ -401,7 +397,7 @@ IF @zona='CONDESA'
     UPDATE combosdet
     SET descuento = CASE 
         WHEN familia = 'PASTES' AND IdCombo = '52' THEN 0
-        WHEN familia = 'CAFEVARIOS' AND IdCombo = '52' THEN 9.63855422
+        WHEN familia = 'CAFEVARIOS' AND IdCombo = '52' THEN 9.638554217
         ELSE descuento
     END
     WHERE IdCombo = '52' AND familia IN ('PASTES','CAFEVARIOS');
@@ -420,5 +416,125 @@ IF @zona='CONDESA'
     WHERE IdCombo = '46' AND familia IN ('PASTES','CAJA');
  
 END
+
+
+IF @zona='CONDESA'
+          BEGIN
+          ---------- ZONA CONDESA 
+
+    -- paqueteko 1 (2 PASTES = AMERICANO/ AGUA)
+    --SELECT * FROM combos WHERE IdCombo='89'
+    --SELECT * FROM combosEspecial WHERE IdCombo='89'
+
+    UPDATE combosEspecial
+    SET descuento = CASE 
+        WHEN articulo = '0702' AND IdCombo = '89' THEN 28.57142857
+        WHEN articulo = '1001' AND IdCombo = '89' THEN 0
+        WHEN articulo = '1002' AND IdCombo = '89' THEN 0
+        ELSE descuento
+    END
+    WHERE IdCombo = '89' AND articulo IN ('0702', '1001', '1002');
+
+
+
+    -- paqueteko 2 (2 PASTES + REFRESCO)
+    --SELECT * FROM combos WHERE IdCombo='88'
+    --SELECT * FROM combosdet WHERE IdCombo='88'
+
+    UPDATE combosdet
+    SET descuento = CASE 
+        WHEN familia = 'PASTES' AND IdCombo = '88' THEN 0
+        WHEN familia = 'PAQUETE01' AND IdCombo = '88' THEN 0 /*revisar*/
+        ELSE descuento
+    END
+    WHERE IdCombo = '88' AND familia IN ('PASTES','PAQUETE01');
+
+
+    -- paqueteko 3 (2 PASTES + CAFE(VARIOS)
+    --SELECT * FROM combos WHERE IdCombo='52'
+    --SELECT * FROM combosdet WHERE IdCombo='52'
+    UPDATE combosdet
+    SET descuento = CASE 
+        WHEN familia = 'PASTES' AND IdCombo = '52' THEN 0
+        WHEN familia = 'CAFEVARIOS' AND IdCombo = '52' THEN 13.1147541
+        ELSE descuento
+    END
+    WHERE IdCombo = '52' AND familia IN ('PASTES','CAFEVARIOS');
+
+
+    -- paqueteko 4 (12 PASTES + CAJA)
+    --SELECT * FROM combos WHERE IdCombo='46'
+    --SELECT * FROM combosdet WHERE IdCombo='CAJA'
+
+    UPDATE combosdet
+    SET descuento = CASE 
+        WHEN familia = 'PASTES' AND IdCombo = '46' THEN 20.51282051
+        WHEN familia = 'CAJA' AND IdCombo = '46' THEN 100
+        ELSE descuento
+    END
+    WHERE IdCombo = '46' AND familia IN ('PASTES','CAJA');
+ 
+END
+
+
+IF @zona='AICM'
+    BEGIN
+    ---------- ZONA AICM (OK) 
+    
+
+
+      -- paqueteko 1 (2 PASTES = AMERICANO/ AGUA)
+      --SELECT * FROM combos WHERE IdCombo='89'
+      --SELECT * FROM combosEspecial WHERE IdCombo='89'
+
+      UPDATE combosEspecial
+      SET descuento = CASE 
+          WHEN articulo = '0702' AND IdCombo = '89' THEN 29.5454545
+          WHEN articulo = '1001' AND IdCombo = '89' THEN 6.06060606
+          WHEN articulo = '1002' AND IdCombo = '89' THEN 6.06060606
+          ELSE descuento
+      END
+      WHERE IdCombo = '89' AND articulo IN ('0702', '1001', '1002');
+
+
+
+      -- paqueteko 2 (2 PASTES + REFRESCO)
+      --SELECT * FROM combos WHERE IdCombo='88'
+      --SELECT * FROM combosdet WHERE IdCombo='88'
+
+      UPDATE combosdet
+      SET descuento = CASE 
+          WHEN familia = 'PASTES' AND IdCombo = '88' THEN 0
+          WHEN familia = 'PAQUETE01' AND IdCombo = '88' THEN 5.71428571
+          ELSE descuento
+      END
+      WHERE IdCombo = '88' AND familia IN ('PASTES','PAQUETE01');
+
+
+      -- paqueteko 3 (2 PASTES + CAFE(VARIOS)
+      --SELECT * FROM combos WHERE IdCombo='52'
+      --SELECT * FROM combosdet WHERE IdCombo='52'
+      UPDATE combosdet
+      SET descuento = CASE 
+          WHEN familia = 'PASTES' AND IdCombo = '52' THEN 0
+          WHEN familia = 'CAFEVARIOS' AND IdCombo = '52' THEN 14.5454545
+          ELSE descuento
+      END
+      WHERE IdCombo = '52' AND familia IN ('PASTES','CAFEVARIOS');
+
+
+      -- paqueteko 4 (12 PASTES + CAJA)
+      --SELECT * FROM combos WHERE IdCombo='46'
+      --SELECT * FROM combosdet WHERE IdCombo='CAJA'
+
+      UPDATE combosdet
+      SET descuento = CASE 
+          WHEN familia = 'PASTES' AND IdCombo = '46' THEN 20
+          WHEN familia = 'CAJA' AND IdCombo = '46' THEN 100
+          ELSE descuento
+      END
+      WHERE IdCombo = '46' AND familia IN ('PASTES','CAJA');
+
+      END
 
 
