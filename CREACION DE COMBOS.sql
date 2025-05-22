@@ -5,6 +5,7 @@
 -- Declaración de variables
 DECLARE @id_combo           VARCHAR(10);
 DECLARE @nom_combo          VARCHAR(50);
+DECLARE @com_base			INT;
 DECLARE @fecini             VARCHAR(10);
 DECLARE @fecfin             VARCHAR(10);
 DECLARE @horain             TIME;
@@ -23,6 +24,7 @@ DECLARE @de3                FLOAT;
 -- Asignación de valores
 SET @id_combo         = '47';
 SET @nom_combo        = 'COMBO REPSOL';
+SET @com_base		  = 53;
 SET @fecini           = '20250526';
 SET @fecfin           = '20250831';
 SET @horain           = '00:00:00';
@@ -87,7 +89,7 @@ SELECT
     CantFijaUnSabor,
     cliente           = @cliente
 FROM combos
-WHERE idcombo = '53';
+WHERE idcombo = @com_base;
 
 
 -- ============================
